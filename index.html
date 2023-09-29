@@ -1,16 +1,37 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./Assets/style.css">
+    <title>Coding Skills Quiz</title>
+    <link rel="stylesheet" href="./Assets/CSS/style.css">
 </head>
+
 <body>
+    <div class="container">
+        <img src="./Assets/Images/code_header.jpg" alt="dark coding elements on computer screen" width="95%" >
+        <div class="text-block">
+            <H1>Coding Skills Quiz</H1>
+            <p>Test your knowledge of Javascript against the clock and your peers!</p>
+        </div>
 
+    </div>
 
+    <div class="cards">
+        <div class="card1">
+            <h2>Question 1: </h2>
+            <p class="questions" id="question1">
+                Where is the correct place to insert a Javascript?</p>
+            <input type="radio" name="answer1" value="wrong"> The head section <br>
+            <input type="radio" name="answer1" value="wrong"> The body section<br>
+            <input type="radio" name="answer1" value="right"> The head and body section are correct <br>
+            <br>
 
+            <button id="submit">Submit Answer</button>
+        </div>
+    </div>
 
-    
     <script src="script.js"></script>
 </body>
+
 </html>

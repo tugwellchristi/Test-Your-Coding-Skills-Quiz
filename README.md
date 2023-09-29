@@ -1,4 +1,4 @@
-# Test Your Coding Skills Quiz
+# Coding Skills Quiz
 
 ## Project Description
 As a coding bootcamp student, I wanted to create a timed quiz about JavaScript fundamentals that stores scores so I can gauge my progress compared to my peers. I've included the following content and functionality: 
@@ -13,7 +13,8 @@ As a coding bootcamp student, I wanted to create a timed quiz about JavaScript f
 - HTML
 - CSS
 - JavaScript
+- W3 Schools - Quiz Questions found [here](https://www.w3schools.com/js/js_quiz.asp/ "here")
 
 ## Deployed Application 
 - Deployed link [here](link/ "here")
-- Repository link [here](link/ "here")
+- Repository link [here](linhttps://github.com/tugwellchristi/Test-Your-Coding-Skills-Quizk/ "here")
