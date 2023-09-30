@@ -9,28 +9,34 @@
 
 <body>
     <div class="container">
-        <img src="./Assets/Images/code_header.jpg" alt="dark coding elements on computer screen" width="95%" >
+        <img src="./Assets/Images/code_header.jpg" alt="dark coding elements on computer screen" width="95%" height="90%">
         <div class="text-block">
             <H1>Coding Skills Quiz</H1>
             <p>Test your knowledge of Javascript against the clock and your peers!</p>
         </div>
-
     </div>
 
     <div class="cards">
-        <div class="card1">
-            <h2>Question 1: </h2>
-            <p class="questions" id="question1">
-                Where is the correct place to insert a Javascript?</p>
-            <input type="radio" name="answer1" value="wrong"> The head section <br>
-            <input type="radio" name="answer1" value="wrong"> The body section<br>
-            <input type="radio" name="answer1" value="right"> The head and body section are correct <br>
-            <br>
+        <div class="quiz">
+            <h2 id="question">Question goes here </h2>
+            <div id="answer-buttons"></div>
+            <button class="btn"> Answer 1 </button>
+            <button class="btn"> Answer 2</button>
+            <button class="btn"> Answer 3 </button>
+        </div>
+            <button id="next-btn">Next Question</button>
 
-            <button id="submit">Submit Answer</button>
+            
         </div>
     </div>
-
+    <div class="card">
+        <h2>Display Results:</h2>
+        <p id="results"></p>
+    </div>
+    <div class="card">
+        <h2>Timer: </h2>
+        <p id="timer"></p>
+    </div>
     <script src="script.js"></script>
 </body>
 
