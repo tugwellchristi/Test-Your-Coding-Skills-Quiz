@@ -89,7 +89,7 @@ body {
 .card {
     display: flex;
     float: left;
-    height: 300px;
+    height: 200px;
     padding-left: 50px;
     width: 20%;
     background-color: aliceblue;
@@ -115,12 +115,17 @@ body {
 
 @media screen and (max-width: 768px) {
     .cards {
-        width: 80%;
+        margin-top: 5px;
+        margin-left: 9px;
+        margin-right:10px;
+        padding-bottom:20px;
+        width: 92%;
     }
     .card {
         width: 60%;
         justify-content: left;
         margin-left: 100px;   
+        height: 150px;
     }
     .text-block {
         font-size:x-large;
@@ -130,9 +135,16 @@ body {
         width:85%;
     }
     .btn {
-        width: 65%;
+        width: 80%;
+        padding: 5px;
+        margin: 3px;
     }
     #next-btn {
-        font-size: small;
+        width: 20%;
+        font-size: medium;
+    }
+    #h2 {
+        width: 70%;
+        font-size:medium;
     }
 }

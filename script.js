@@ -45,14 +45,20 @@ const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 
+const timeEl = document.querySelector(".time");
+const mainEl = document.getElementById("main");
+const secondsLeft = 20;
+
 let currentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz() {
+    startTimer();
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
     showQuestion();
+    
 }
 
 function showQuestion() {
@@ -71,6 +77,25 @@ function showQuestion() {
         }
         button.addEventListener("click", selectAnswer);
     });
+}
+
+function startTimer() {
+    const timerInterval = setInterval(function(){
+        secondsLeft;
+        timeEl.textContent = secondsLeft + " seconds remaining to answer.";
+
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            sendMessage();
+        }
+    }, 1000);
+}
+
+function sendMessage() {
+    timeEl.textContent = " ";
+    var imgEl = document.createElement("img");
+    imgEl.setAttribute("src", "assets/images/times-up.jpeg");
+    mainEl.appendChild(imgEl);
 }
 
 function resetState() {
@@ -112,7 +137,7 @@ function handleNextButton(){
     } else {
         showScore();
     }
-
+}
 nextButton.addEventListener("click", ()=> {
     if(currentQuestionIndex < questions.length){
         handleNextButton();
@@ -122,5 +147,4 @@ nextButton.addEventListener("click", ()=> {
 });
 
 startQuiz();
-
-}
+startTimer();
