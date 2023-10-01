@@ -22,13 +22,15 @@
 }
 
 .text-block {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    bottom: 500px;
+    bottom: 300px;
     right: 20px;
     color: white;
-    padding-left: 20px;
+    padding-left: 40px;
     padding-right: 75px;
-    font-size: 38px;
+    font-size: 36px;
 }
 
 body {
@@ -38,7 +40,7 @@ body {
 .cards {
     display: flex;
     float: left;
-    width: 40%;
+    width: 65%;
     height: 300px;
     background-color: aliceblue;
     padding-top: 10px;
@@ -53,7 +55,7 @@ body {
 }
 
 .btn {
-    width: 100%;
+    width: 90%;
     border: 1px solid #040404;
     background-color:rgb(202, 220, 245);
     font-size: medium;
@@ -98,11 +100,36 @@ body {
     border-radius: 15px;
 }
 
-#submit {
-    width: 25%;
-    padding: 5px;
-    margin: 0px;
-    background-color: #1a5dbc;
+.correct {
+ background-color: #9c0db8;
+ color: aliceblue;
+}
+
+.incorrect {
+    background-color: black;
     color: aliceblue;
 }
 
+@media screen and (max-width: 768px) {
+    .cards {
+        width: 80%;
+    }
+    .card {
+        width: 60%;
+        justify-content: left;
+        margin-left: 100px;   
+    }
+    .text-block {
+        font-size:x-large;
+        margin-left: 100px;
+    }
+    .container img {
+        width:85%;
+    }
+    .btn {
+        width: 65%;
+    }
+    #next-btn {
+        font-size: small;
+    }
+}

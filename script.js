@@ -1,44 +1,44 @@
 const questions = [
-{
-    question: "Where is the correct place to insert a Javascript?", 
-    answers: [
-        { text: "The head section", correct: false}, 
-        { text: "The body section", correct: false},
-        { text: "The head and body section are correct", correct: true},
-    ]
-}, 
-{
-    question: "How do you write an IF statement in JavaScript?", 
-    answers: [
-        { text: "if (i == 5)", correct: true}, 
-        { text: "if i = 5 then", correct: false},
-        { text: "if i == 5 then", correct: false},
-    ]
-}, 
-{
-    question: "Which operator is used to assign a value to a variable?", 
-    answers: [
-        { text: "-", correct: false}, 
-        { text: "X", correct: false},
-        { text: "=", correct: true},
-    ]
-}, 
-{
-    question: "What will the following code return: Boolean(10 > 9)", 
-    answers: [
-        { text: "false", correct: false}, 
-        { text: "true", correct: true},
-        { text: "NAN", correct: false},
-    ]
-}, 
-{
-    question: "Which event occurs when the user clicks on an HTML element?", 
-    answers: [
-        { text: "onmouseclick", correct: false}, 
-        { text: "click", correct: false},
-        { text: "onclick", correct: true},
-    ]
-}, 
+    {
+        question: "Where is the correct place to insert a Javascript?",
+        answers: [
+            { text: "The head section", correct: false },
+            { text: "The body section", correct: false },
+            { text: "The head and body section are correct", correct: true },
+        ]
+    },
+    {
+        question: "How do you write an IF statement in JavaScript?",
+        answers: [
+            { text: "if (i == 5)", correct: true },
+            { text: "if i = 5 then", correct: false },
+            { text: "if i == 5 then", correct: false },
+        ]
+    },
+    {
+        question: "Which operator is used to assign a value to a variable?",
+        answers: [
+            { text: "-", correct: false },
+            { text: "X", correct: false },
+            { text: "=", correct: true },
+        ]
+    },
+    {
+        question: "What will the following code return: Boolean(10 > 9)",
+        answers: [
+            { text: "false", correct: false },
+            { text: "true", correct: true },
+            { text: "NAN", correct: false },
+        ]
+    },
+    {
+        question: "Which event occurs when the user clicks on an HTML element?",
+        answers: [
+            { text: "onmouseclick", correct: false },
+            { text: "click", correct: false },
+            { text: "onclick", correct: true },
+        ]
+    },
 ];
 
 const questionElement = document.getElementById("question");
@@ -65,15 +65,38 @@ function showQuestion() {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
-        answerButtons.appendChild(button);  
+        answerButtons.appendChild(button);
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
     });
 }
 
 function resetState() {
-    nextButton.style.display ="none";
-    while(answerButtons.firstChild) {
+    nextButton.style.display = "none";
+    while (answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild);
     }
 }
 
+function selectAnswer(){
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct === "true";
+    if (isCorrect) {
+        selectedBtn.classList.add("correct");
+    } else {
+        selectedBtn.classList.add("incorrect");
+    }
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === "true"){
+            button.classList.add("correct");
+        }
+        button.disabled = true;
+    });
+    nextButton.style.display = "block";
+}
+
+
 startQuiz();
+
