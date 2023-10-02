@@ -45,15 +45,29 @@ const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 
-const timeEl = document.querySelector(".time");
-const mainEl = document.getElementById("main");
-const secondsLeft = 20;
-
 let currentQuestionIndex = 0;
 let score = 0;
 
+const startingMinutes = 2;
+let time = startingMinutes * 60;
+
+const countdownEl = document.getElementById("countdown");
+
+const myInterval = setInterval(startCountdown, 1000);
+
+function startCountdown() {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    countdownEl.innerHTML = `${minutes}: ${seconds} <br> To Complete The Quiz`;
+    time--;
+
+    if(time === 0) {
+        clearInterval(myInterval);
+    }
+}
+
 function startQuiz() {
-    startTimer();
+    //startTimer();
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
@@ -77,25 +91,6 @@ function showQuestion() {
         }
         button.addEventListener("click", selectAnswer);
     });
-}
-
-function startTimer() {
-    const timerInterval = setInterval(function(){
-        secondsLeft;
-        timeEl.textContent = secondsLeft + " seconds remaining to answer.";
-
-        if(secondsLeft === 0) {
-            clearInterval(timerInterval);
-            sendMessage();
-        }
-    }, 1000);
-}
-
-function sendMessage() {
-    timeEl.textContent = " ";
-    var imgEl = document.createElement("img");
-    imgEl.setAttribute("src", "assets/images/times-up.jpeg");
-    mainEl.appendChild(imgEl);
 }
 
 function resetState() {
@@ -125,7 +120,7 @@ function selectAnswer(e){
 
 function showScore() {
     resetState();
-    questionElement.innerHTML = 'Your score is ${score} out of ${questions.length}!';
+    questionElement.innerHTML = `Your score is ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
 }
@@ -147,4 +142,4 @@ nextButton.addEventListener("click", ()=> {
 });
 
 startQuiz();
-startTimer();
+

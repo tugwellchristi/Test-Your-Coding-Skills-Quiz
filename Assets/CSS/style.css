@@ -103,6 +103,15 @@ body {
     border-radius: 15px;
 }
 
+p {
+    display: inline-flex;
+    font-size: 26px; 
+    padding-top: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left:40px;
+}
+
 .correct {
  background-color: #9c0db8;
  color: aliceblue;

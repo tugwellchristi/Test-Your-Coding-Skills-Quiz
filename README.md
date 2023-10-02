@@ -18,3 +18,4 @@ As a coding bootcamp student, I wanted to create a timed quiz about JavaScript f
 ## Deployed Application 
 - Deployed link [here](link/ "here")
 - Repository link [here](linhttps://github.com/tugwellchristi/Test-Your-Coding-Skills-Quizk/ "here")
+- JavaScript tutorial link [here](https://www.youtube.com/watch?v=PBcqGxrr9g8/ "here")
