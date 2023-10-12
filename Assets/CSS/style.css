@@ -132,6 +132,11 @@ p {
     background-color: black;
     color: aliceblue;
 }
+/* table, th, td {
+    font-size: large;
+    border: 1px solid black;
+    border-collapse: collapse;
+  } */
 
 @media screen and (max-width: 768px) {
     .cards {

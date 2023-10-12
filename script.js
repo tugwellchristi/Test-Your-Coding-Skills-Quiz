@@ -42,21 +42,23 @@ const questions = [
     },
 ];
 
-// Global variables
-let currentQuestionIndex = 0;
-let score = 0;
-
 // Get elements by Id
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const saveButton = document.getElementById("saveBtn");
 const countdownEl = document.getElementById("countdown");
 const textEl = document.getElementById("text");
 const highScoresEl = document.getElementById("highScores");
 const initialsEl = document.getElementById("initials");
 
+// Array for storing high scores and initials
+const highScoresTable = [];
 
-let time = 45;
+// Global variables
+let currentQuestionIndex = 0;
+let score = 0;
+let time = 30;
 const myInterval = setInterval(startCountdown, 1000);
 
 // Timer function
@@ -83,8 +85,10 @@ function startQuiz() {
     score = 0;
     initialsEl.style.display = "none";
     highScoresEl.style.display = "none";
+    saveButton.style.display = "none";
     nextButton.innerHTML = "Next";
     showQuestion();
+    
 
 }
 // Show question function displays new question after the reset state occurs
@@ -141,15 +145,22 @@ function showScore() {
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
     initialsEl.style.display = "block";
-    highScoresEl.style.display = "block";
-    localStorage.setItem("initials", initialsEl);
-    localStorage.setItem("highScores", highScoresEl);
-    displayHighScores();
-}
+    highScoresEl.style.display = "block";   
+    saveButton.style.display = "block";
 
-function displayHighScores() {
-    let storedInitials = localStorage.getItem("initials");
-    let storedHighScores = localStorage.getItem("highScores");
+    saveButton.addEventListener("click", function () {
+      const initials = initialsEl.ariaValueMax;
+      if (initials) {
+        const scoreData = { initials: initials, score: score };
+        const existingScores = JSON.parse(this.localStorage.getItem("highScores")) || [];
+        existingScores.push(scoreData);
+        existingScores.sort(function(a,b) {
+            return b.score - a.score;
+        });
+        localStorage.setItem("highScores", JSON.stringify(existingScores));
+        displayHighScores();
+      }  
+    })
 }
 
 // Handle next button function displays another question when pressed if the index is less than the array lenght. If all questions have been answered, it displays the score statement
@@ -158,8 +169,7 @@ function handleNextButton() {
     if (currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
-        showScore();
-       
+        showScore();   
     }
 }
 nextButton.addEventListener("click", function () {
@@ -167,7 +177,7 @@ nextButton.addEventListener("click", function () {
         handleNextButton();
     } else {
         startQuiz();
-        startCountdown();
+        
     }
 });
 
