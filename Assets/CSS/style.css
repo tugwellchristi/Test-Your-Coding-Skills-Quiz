@@ -31,6 +31,7 @@
     padding-left: 40px;
     padding-right: 75px;
     font-size: 36px;
+    margin-bottom: 150px;
 }
 
 body {
@@ -103,11 +104,20 @@ body {
     border-radius: 15px;
 }
 
+#initials {
+    margin: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+#highScores {
+    margin-left: 6px;
+    margin-bottom: 10px;
+}
+
 p {
     display: inline-flex;
     font-size: 26px; 
     padding-top: 10px;
-    
     margin-bottom: 15px;
     margin-left:40px;
     font-weight: bold;
@@ -141,6 +151,7 @@ p {
     .text-block {
         font-size:x-large;
         margin-left: 100px;
+        margin-bottom: 150px;
     }
     .container {
         margin-top: 5px;
@@ -149,16 +160,17 @@ p {
         width:85%;
     }
     .btn {
-        width: 80%;
+        width: 70%;
         padding: 5px;
         margin: 3px;
     }
     #next-btn {
-        width: 20%;
+        width: 10%;
         font-size: medium;
     }
-    #h2 {
-        width: 70%;
-        font-size:medium;
+    #question {
+        font-size: larger;
+        margin: 4px;
     }
+    
 }

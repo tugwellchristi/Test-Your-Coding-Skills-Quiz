@@ -1,3 +1,4 @@
+// Array with quiz questions
 const questions = [
     {
         question: "Where is the correct place to insert a Javascript?",
@@ -41,47 +42,59 @@ const questions = [
     },
 ];
 
-const questionElement = document.getElementById("question");
-const answerButtons = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-btn");
-
+// Global variables
 let currentQuestionIndex = 0;
 let score = 0;
 
-const startingMinutes = 2;
-let time = startingMinutes * 60;
-
+// Get elements by Id
+const questionElement = document.getElementById("question");
+const answerButtons = document.getElementById("answer-buttons");
+const nextButton = document.getElementById("next-btn");
 const countdownEl = document.getElementById("countdown");
+const textEl = document.getElementById("text");
+const highScoresEl = document.getElementById("highScores");
+const initialsEl = document.getElementById("initials");
 
+
+let time = 45;
 const myInterval = setInterval(startCountdown, 1000);
 
+// Timer function
 function startCountdown() {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    countdownEl.innerHTML = `${minutes}: ${seconds} <br> To Complete The Quiz`;
+    // Used template literal to display remaining time statement
+    countdownEl.innerHTML = `${time} Seconds To Complete The Quiz`;
     time--;
 
-    if(time === 0) {
+    if (time === 0) {
         clearInterval(myInterval);
+        sendMessage();
     }
 }
 
-function startQuiz() {
-    //startTimer();
-    currentQuestionIndex = 0;
-    score = 0;
-    nextButton.innerHTML = "Next";
-    showQuestion();
-    
+// Text message function that displays when time is complete
+function sendMessage() {
+    countdownEl.textContent = "Time is Up!";
+    showScore();
 }
 
+// Start quiz function that initiates quiz, pulls and displays question from the question array, score starting at 0
+function startQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    initialsEl.style.display = "none";
+    highScoresEl.style.display = "none";
+    nextButton.innerHTML = "Next";
+    showQuestion();
+
+}
+// Show question function displays new question after the reset state occurs
 function showQuestion() {
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-    currentQuestion.answers.forEach(answer => {
+    currentQuestion.answers.forEach(function (answer) {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
@@ -93,14 +106,16 @@ function showQuestion() {
     });
 }
 
+// Reset state function removes previous question text and when occuring with the show question function, displays a new question. Also hides the "Next" button until the question has been answered
 function resetState() {
+    // "None" hides the next button until first question has been answered
     nextButton.style.display = "none";
     while (answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild);
     }
 }
-
-function selectAnswer(e){
+// Select answer function increments score as buttons are selected
+function selectAnswer(e) {
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
     if (isCorrect) {
@@ -109,8 +124,8 @@ function selectAnswer(e){
     } else {
         selectedBtn.classList.add("incorrect");
     }
-    Array.from(answerButtons.children).forEach(button => {
-        if(button.dataset.correct === "true"){
+    Array.from(answerButtons.children).forEach(function (button) {
+        if (button.dataset.correct === "true") {
             button.classList.add("correct");
         }
         button.disabled = true;
@@ -118,26 +133,41 @@ function selectAnswer(e){
     nextButton.style.display = "block";
 }
 
+// Show score function displays score statement and provides play again button 
 function showScore() {
     resetState();
-    questionElement.innerHTML = `Your score is ${score} out of ${questions.length}!`;
+    // Used template literal to display score
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
+    initialsEl.style.display = "block";
+    highScoresEl.style.display = "block";
+    localStorage.setItem("initials", initialsEl);
+    localStorage.setItem("highScores", highScoresEl);
+    displayHighScores();
 }
 
-function handleNextButton(){
+function displayHighScores() {
+    let storedInitials = localStorage.getItem("initials");
+    let storedHighScores = localStorage.getItem("highScores");
+}
+
+// Handle next button function displays another question when pressed if the index is less than the array lenght. If all questions have been answered, it displays the score statement
+function handleNextButton() {
     currentQuestionIndex++;
-    if(currentQuestionIndex < questions.length) {
+    if (currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
         showScore();
+       
     }
 }
-nextButton.addEventListener("click", ()=> {
-    if(currentQuestionIndex < questions.length){
+nextButton.addEventListener("click", function () {
+    if (currentQuestionIndex < questions.length) {
         handleNextButton();
     } else {
         startQuiz();
+        startCountdown();
     }
 });
 
