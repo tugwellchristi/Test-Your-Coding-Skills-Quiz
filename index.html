@@ -1,16 +1,40 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./Assets/style.css">
+    <title>Coding Skills Quiz</title>
+    <link rel="stylesheet" href="./Assets/CSS/style.css">
 </head>
+
 <body>
+    <div class="container">
+        <img src="./Assets/Images/code_header.jpg" alt="dark coding elements on computer screen" width="95%"
+            height="90%">
+        <div class="text-block">
+            <H1>Coding Skills Quiz</H1>
+            <h3>Test your knowledge of Javascript against the clock and your peers!</h3>
+        </div>
+    </div>
 
+    <div class="cards">
+        <div class="quiz">
+            <h2 id="question">Question goes here </h2>
+            <div id="answer-buttons"></div>
+            <p id="highScores">Save your score! </p>
+            <input type="text" id="initials" placeholder="Enter your initials here" />
+            <button id="saveBtn">Save</button>
+            <h2 id="savedHighScores">High Scores</h2>
+            <ol id="savedScores"></ol>
+        </div>
+        <button id="next-btn">Next Question</button>
+    </div>
+    <div class=" card">
+        <h2>Timer: </h2>
+        <p id="countdown"></p>
+        <script src="script.js"></script>
+    </div>
 
-
-
-    
-    <script src="script.js"></script>
 </body>
+
 </html>
