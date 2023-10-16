@@ -51,11 +51,12 @@ const countdownEl = document.getElementById("countdown");
 const textEl = document.getElementById("text");
 const highScoresEl = document.getElementById("highScores");
 const initialsEl = document.getElementById("initials");
+const savedScoresEl = document.getElementById("savedScores");
+const savedHighScores = document.getElementById("savedHighScores");
 
-// Array for storing high scores and initials
-const highScoresTable = [];
 
 // Global variables
+
 let currentQuestionIndex = 0;
 let score = 0;
 let time = 30;
@@ -87,8 +88,9 @@ function startQuiz() {
     highScoresEl.style.display = "none";
     saveButton.style.display = "none";
     nextButton.innerHTML = "Next";
+    savedHighScores.style.display = "none";
     showQuestion();
-    
+
 
 }
 // Show question function displays new question after the reset state occurs
@@ -137,49 +139,47 @@ function selectAnswer(e) {
     nextButton.style.display = "block";
 }
 
-// Show score function displays score statement and provides play again button 
-function showScore() {
-    resetState();
-    // Used template literal to display score
-    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-    nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
-    initialsEl.style.display = "block";
-    highScoresEl.style.display = "block";   
-    saveButton.style.display = "block";
-
-    saveButton.addEventListener("click", function () {
-      const initials = initialsEl.ariaValueMax;
-      if (initials) {
-        const scoreData = { initials: initials, score: score };
-        const existingScores = JSON.parse(this.localStorage.getItem("highScores")) || [];
-        existingScores.push(scoreData);
-        existingScores.sort(function(a,b) {
-            return b.score - a.score;
-        });
-        localStorage.setItem("highScores", JSON.stringify(existingScores));
-        displayHighScores();
-      }  
-    })
-}
-
 // Handle next button function displays another question when pressed if the index is less than the array lenght. If all questions have been answered, it displays the score statement
 function handleNextButton() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
-        showScore();   
+        showScore();
     }
 }
 nextButton.addEventListener("click", function () {
     if (currentQuestionIndex < questions.length) {
         handleNextButton();
+    } else if (time === 0) {
+        clearInterval(myInterval);
+        sendMessage();
+        showScore();
+             
     } else {
         startQuiz();
-        
+        startTimer();
     }
 });
+
+// Reset the timer after time runs out or quiz is complete
+function startTimer() {
+    clearInterval(myInterval);
+    time = 30;
+    myInterval = setInterval(startCountdown, 1000);
+}
+
+// Show score function displays score statement and provides play again button 
+function showScore() {
+    resetState();
+    // Used template literal to display score
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    nextButton.style.display = "block";
+    initialsEl.style.display = "block";
+    highScoresEl.style.display = "block";
+    saveButton.style.display = "block";
+    nextButton.innerHTML = "Play Again";
+}
 
 startQuiz();
 

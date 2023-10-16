@@ -156,13 +156,14 @@ p {
     .text-block {
         font-size:x-large;
         margin-left: 100px;
-        margin-bottom: 150px;
+        margin-bottom: -20px;
     }
     .container {
-        margin-top: 5px;
+        margin-top: 1px;
     }
     .container img {
         width:85%;
+        margin-top: 25px;
     }
     .btn {
         width: 70%;
@@ -177,5 +178,7 @@ p {
         font-size: larger;
         margin: 4px;
     }
-    
+    #highScores {
+        margin-top: 0px;
+    }
 }
