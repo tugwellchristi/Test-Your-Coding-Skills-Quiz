@@ -17,6 +17,9 @@ As a coding bootcamp student, I wanted to create a timed quiz about JavaScript f
 - JavaScript quiz tutorial [here](https://www.youtube.com/watch?v=PBcqGxrr9g8/ "here")
 - W3 Schools timer tutorials [here](https://www.w3schools.com/jsref/met_win_clearinterval.asp/ "here")
 
+## Screenshot of Deployed Application
+![Screen Shot 2023-10-15 at 8 05 09 PM](https://github.com/tugwellchristi/Test-Your-Coding-Skills-Quiz/assets/90078824/bae56114-b824-44d2-85e1-e9ad3d966aa8)
+
 ## Deployed Application 
-- Deployed link [here](link/ "here")
-- Repository link [here](linhttps://github.com/tugwellchristi/Test-Your-Coding-Skills-Quizk/ "here")
+- Deployed link [here](https://tugwellchristi.github.io/Test-Your-Coding-Skills-Quiz/ "here")
+- Repository link [here](https://github.com/tugwellchristi/Test-Your-Coding-Skills-Quiz/ "here")
